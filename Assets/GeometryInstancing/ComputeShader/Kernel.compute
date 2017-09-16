@@ -1,0 +1,50 @@
+﻿#pragma kernel Calculate
+#include "UnityCG.cginc"
+#include "../Cginc/Transform.cginc"
+
+struct TransformStruct{
+	float3 translate;
+	float3 rotation;
+	float3 scale;
+	float3 velocity;
+	bool init;
+};
+
+RWStructuredBuffer<TransformStruct> _TransformBuff;
+float _DeltaTime;
+float _Velocity;
+float3 _Bounds;
+
+/*
+ Reference
+ https://stackoverflow.com/questions/12964279/whats-the-origin-of-this-glsl-rand-one-liner
+*/
+float rand(uint3 id : SV_DispatchThreadID, float salt) {
+	return frac(sin(dot(id.xy, float2(12.9898, 78.233))) * 43758.5453 * salt);
+}
+void initialize(uint3 id : SV_DispatchThreadID){
+	float d1 = _DeltaTime;
+	float d2 = d1 * d1;
+	float d3 = d1 * d2;
+	_TransformBuff[id.x].velocity = (float3(rand(id, d1), rand(id, d2), rand(id, d3)) - 0.5);
+	_TransformBuff[id.x].translate = (float3(rand(id, 11 * d1), rand(id, 13 * d2), rand(id, 17 * d3)) - 0.5) * _Bounds;
+	_TransformBuff[id.x].scale = rand(id, 19 * _DeltaTime) * 0.1;
+	_TransformBuff[id.x].rotation = rand(id, 23 * _DeltaTime) * 360;
+	_TransformBuff[id.x].init = true;
+}
+void update(uint3 id : SV_DispatchThreadID) {
+	float3 b0 = abs(_TransformBuff[id.x].translate);
+	float3 b1 = _Bounds * 0.5;
+	float3 v = _TransformBuff[id.x].velocity * _Velocity;
+	_TransformBuff[id.x].translate += v;
+	_TransformBuff[id.x].rotation += length(v) * 50;
+	_TransformBuff[id.x].init = b0.x < b1.x && b0.y < b1.y &&  b0.z < b1.z;
+}
+[numthreads(8, 8,1)]
+void Calculate(uint3 id : SV_DispatchThreadID) {
+	if(_TransformBuff[id.x].init == false){
+		initialize(id);
+	}else{
+		update(id);
+	}
+}
