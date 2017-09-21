@@ -1,5 +1,7 @@
 # GPUInstancingExample
-UUnityでの色々なGPUInstancingの実装方法
+Unityでの色々なGPUInstancingの実装方法
+
+![](https://raw.githubusercontent.com/cou256/GPUInstancingExample/images/image00.gif)
 
 ***
 The MIT License
