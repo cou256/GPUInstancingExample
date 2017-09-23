@@ -69,7 +69,7 @@ public class PseudoInstancing : MonoBehaviour
     }
     void Start ()
     {
-        var maxDrawCont = 65000 / mesh.vertexCount;
+        var maxDrawCont = 65536 / mesh.vertexCount;
         var lim0 = numberOfDraw / maxDrawCont;
         var lim1 = numberOfDraw % maxDrawCont;
         for (var i = 0; i < lim0; i++)
