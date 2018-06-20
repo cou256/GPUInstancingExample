@@ -1,5 +1,4 @@
-﻿// Upgrade NOTE: upgraded instancing buffer 'Props' to new syntax.
-
+﻿
 Shader "Instanced/DrawMeshInstanced" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
@@ -17,7 +16,7 @@ Shader "Instanced/DrawMeshInstanced" {
 		#pragma instancing_options procedural:setup
 		#pragma target 5.0
 
-		#include "../Cginc/Transform.cginc"
+		#include "../../Cginc/Transform.cginc"
 
 		struct TransformStruct {
 			float3 translate;

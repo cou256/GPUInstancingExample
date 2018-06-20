@@ -1,6 +1,6 @@
 ﻿#pragma kernel Calculate
 #include "UnityCG.cginc"
-#include "../Cginc/Transform.cginc"
+#include "../../Cginc/Transform.cginc"
 
 struct TransformStruct{
 	float3 translate;
