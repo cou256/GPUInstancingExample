@@ -31,7 +31,7 @@ public class GraphicsDrawProcedural : MonoBehaviour
         mat.SetBuffer("_TransformBuff", transformBuff);
         kernel.SetBuffer(kernel.FindKernel("Calculate"), "_TransformBuff", transformBuff);
     }
-    void Update ()
+    void Update()
     {
         kernel.SetFloat("_DeltaTime", Time.deltaTime);
         kernel.SetFloat("_Velocity", velocity);
@@ -49,7 +49,7 @@ public class GraphicsDrawProcedural : MonoBehaviour
         public Vector3 rotation;
         public Vector3 scale;
         public Vector3 velocity;
-        public bool init;
+        public int init;
     }
     ComputeBuffer CreateMeshBuffer(Mesh mesh)
     {

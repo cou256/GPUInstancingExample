@@ -12,7 +12,7 @@
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows vertex:vert
 		#pragma target 3.0
-		#include "../Cginc/Transform.cginc"
+		#include "../../Cginc/Transform.cginc"
 
 		sampler2D _MainTex;
 		sampler2D _TranslateBuff;
