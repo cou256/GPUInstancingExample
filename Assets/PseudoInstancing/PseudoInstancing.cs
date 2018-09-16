@@ -67,7 +67,7 @@ public class PseudoInstancing : MonoBehaviour
         velocityBuff.Blit(4);
         initBuff.Blit(5);
     }
-    void Start ()
+    void Start()
     {
         var maxDrawCont = 65536 / mesh.vertexCount;
         var lim0 = numberOfDraw / maxDrawCont;
@@ -79,7 +79,7 @@ public class PseudoInstancing : MonoBehaviour
         combineMeshs.Add(CreateCombineMesh(lim1, maxDrawCont * lim0));
     }
 
-    void Update ()
+    void Update()
     {
         kernelMat.SetFloat("_DeltaTime", Time.deltaTime);
         kernelMat.SetFloat("_Velocity", velocity);
@@ -101,7 +101,6 @@ public class PseudoInstancing : MonoBehaviour
     {
         var vertexCount = mesh.vertexCount;
         var indices = mesh.GetIndices(0);
-        var uvs = mesh.uv.ToList();
 
         var indicesList = new List<int>();
         var verticesList = new List<Vector3>();

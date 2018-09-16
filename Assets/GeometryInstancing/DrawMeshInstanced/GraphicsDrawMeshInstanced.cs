@@ -50,7 +50,7 @@ public class GraphicsDrawMeshInstanced : MonoBehaviour
         public Vector3 rotation;
         public Vector3 scale;
         public Vector3 velocity;
-        public bool init;
+        public int init;
     }
     ComputeBuffer CreateComputeBuffer<T>(T[] data, ComputeBufferType type = ComputeBufferType.Default)
     {
