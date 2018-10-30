@@ -11,7 +11,6 @@ struct TransformStruct{
 };
 
 RWStructuredBuffer<TransformStruct> _TransformBuff;
-float _DeltaTime;
 float _Velocity;
 float3 _Bounds;
 
@@ -23,13 +22,13 @@ float rand(uint3 id : SV_DispatchThreadID, float salt) {
 	return frac(sin(dot(id.xy, float2(12.9898, 78.233))) * 43758.5453 * salt);
 }
 void initialize(uint3 id : SV_DispatchThreadID){
-	float d1 = _DeltaTime;
+	float d1 = unity_DeltaTime.x;
 	float d2 = d1 * d1;
 	float d3 = d1 * d2;
 	_TransformBuff[id.x].velocity = (float3(rand(id, d1), rand(id, d2), rand(id, d3)) - 0.5);
 	_TransformBuff[id.x].translate = (float3(rand(id, 11 * d1), rand(id, 13 * d2), rand(id, 17 * d3)) - 0.5) * _Bounds;
-	_TransformBuff[id.x].scale = rand(id, 19 * _DeltaTime) * 0.1;
-	_TransformBuff[id.x].rotation = rand(id, 23 * _DeltaTime) * 360;
+	_TransformBuff[id.x].scale = rand(id, 19 * d1) * 0.1;
+	_TransformBuff[id.x].rotation = rand(id, 23 * d1) * 360;
 	_TransformBuff[id.x].init = true;
 }
 void update(uint3 id : SV_DispatchThreadID) {

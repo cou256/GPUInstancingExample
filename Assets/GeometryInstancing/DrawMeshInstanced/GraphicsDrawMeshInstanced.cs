@@ -38,7 +38,6 @@ public class GraphicsDrawMeshInstanced : MonoBehaviour
     }
     void Update()
     {
-        kernel.SetFloat("_DeltaTime", Time.deltaTime);
         kernel.SetFloat("_Velocity", velocity);
         kernel.SetVector("_Bounds", bounds);
         kernel.Dispatch(kernel.FindKernel("Calculate"), numberOfDraw / 8 + 1, 1, 1);

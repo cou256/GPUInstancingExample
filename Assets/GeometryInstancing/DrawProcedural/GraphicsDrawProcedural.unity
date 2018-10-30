@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3aafd65c516834087dd326ec8df482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfDraw: 100000
+  numberOfDraw: 300000
   velocity: 0.01
   bounds: {x: 20, y: 20, z: 20}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
@@ -168,7 +168,6 @@ GameObject:
   m_Component:
   - component: {fileID: 959048601}
   - component: {fileID: 959048600}
-  - component: {fileID: 959048599}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -176,13 +175,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &959048599
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 959048598}
-  m_Enabled: 1
 --- !u!20 &959048600
 Camera:
   m_ObjectHideFlags: 0

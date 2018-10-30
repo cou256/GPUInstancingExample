@@ -81,7 +81,6 @@ public class PseudoInstancing : MonoBehaviour
 
     void Update()
     {
-        kernelMat.SetFloat("_DeltaTime", Time.deltaTime);
         kernelMat.SetFloat("_Velocity", velocity);
         kernelMat.SetVector("_Bounds", bounds);
 

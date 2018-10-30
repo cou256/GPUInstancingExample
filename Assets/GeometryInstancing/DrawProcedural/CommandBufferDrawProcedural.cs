@@ -36,9 +36,8 @@ public class CommandBufferDrawProcedural : MonoBehaviour
         Camera.main.AddCommandBuffer(CameraEvent.AfterForwardOpaque, commandBuffer);
         commandBuffer.DrawProcedural(transform.localToWorldMatrix, mat, 0, meshTopology, meshBuff.count, numberOfDraw);
     }
-    void Update ()
+    void Update()
     {
-        kernel.SetFloat("_DeltaTime", Time.deltaTime);
         kernel.SetFloat("_Velocity", velocity);
         kernel.SetVector("_Bounds", bounds);
         kernel.Dispatch(kernel.FindKernel("Calculate"), numberOfDraw / 8 + 1, 1, 1);

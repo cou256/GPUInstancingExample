@@ -11,7 +11,6 @@
 	sampler2D _VelocityBuff;
 	sampler2D _InitBuff;
 
-	float _DeltaTime;
 	float _Velocity;
 	float3 _Bounds;
 	float2 _Offset;
@@ -25,7 +24,7 @@
 	}
 	float4 initializeTranslate(float2 uv)
 	{
-		float d1 = _DeltaTime;
+		float d1 = unity_DeltaTime.x;
 		float d2 = d1 * d1;
 		float d3 = d1 * d2;
 		float3 t = (float3(rand(uv, 11 * d1), rand(uv, 13 * d2), rand(uv, 17 * d3)) - 0.5) * _Bounds;
@@ -33,17 +32,17 @@
 	}
 	float4 initializeRotation(float2 uv)
 	{
-		float r = rand(uv, 23 * _DeltaTime) * 360;
+		float r = rand(uv, 23 * unity_DeltaTime.x) * 360;
 		return float4(r, r, r, 1.0);
 	}
 	float4 initializeScale(float2 uv)
 	{
-		float s = rand(uv, 19 * _DeltaTime) * 0.1;
+		float s = rand(uv, 19 * unity_DeltaTime.x) * 0.1;
 		return float4(s, s, s, 1.0);
 	}
 	float4 initializeVelocity(float2 uv)
 	{
-		float d1 = _DeltaTime;
+		float d1 = unity_DeltaTime.x;
 		float d2 = d1 * d1;
 		float d3 = d1 * d2;
 		float3 v = float3(rand(uv, d1), rand(uv, d2), rand(uv, d3)) - 0.5;
